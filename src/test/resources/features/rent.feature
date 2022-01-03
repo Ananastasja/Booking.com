@@ -5,4 +5,3 @@ Feature: Rent a car on booking.com
     When User does car search
     Then The map with locations is displayed
 
-    //тест для практики, но проблема в том, что бывает пишет, что кнопка disabled почему-то и соответственно не находит карту

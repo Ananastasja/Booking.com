@@ -5,8 +5,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -17,6 +15,7 @@ public class RentingCarsSteps {
     public static final String RENT_CAR_BTN = "//*[@class='bui-tab__link']//*[contains(text(), 'Аре')]";
     public static final String SEARCH_FIELD_ID = "ss_origin";
     public static final String MAP_ID = "map_location";
+    public static final String DROP_DOWN_OPTION = "//*[@data-value = 'Minsk, Minsk Region, Belarus']";
 
     @Given("User is looking for cars in {string} city")
     public void userIsLookingForCarsInMinskCity(String city) {
@@ -28,6 +27,8 @@ public class RentingCarsSteps {
         open("https://www.booking.com");
         $(By.xpath(RENT_CAR_BTN)).click();
         $(By.id(SEARCH_FIELD_ID)).sendKeys(city);
+        $(By.id(SEARCH_FIELD_ID)).click();
+        $(By.xpath(DROP_DOWN_OPTION)).doubleClick();
         $(".sb-searchbox__button").click();
     }
 
