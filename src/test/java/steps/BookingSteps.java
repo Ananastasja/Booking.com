@@ -14,6 +14,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class BookingSteps {
     String city;
+    public static final String RATING_XPATH = "//*[text()='%s']//ancestor::*[@data-testid='property-card']//*[contains(@aria-label, 'Оценка')]";
 
     @Given("User is looking for hotels in {string} city")
     public void userIsLookingForHotelsInCity(String city) {
@@ -34,5 +35,14 @@ public class BookingSteps {
             hotelNames.add(element.getText());
         }
         Assert.assertTrue(hotelNames.contains(hotel));
+    }
+
+    @And("the hotel {string} should have the rating {string}")
+    public void theHotelHotelShouldHaveTheRatingRating(String hotel, String rating) {
+        ArrayList<String> hotelRate = new ArrayList<>();
+        for (SelenideElement element : $$(By.xpath(String.format(RATING_XPATH, hotel)))) {
+            hotelRate.add(element.getText());
+        }
+        Assert.assertTrue(hotelRate.contains(rating));
     }
 }
